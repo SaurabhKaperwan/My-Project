@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<style>
+			body 
+			{
+			    font-family:arial;
+			    text-align: center;
+			    background-image: url('background.jpg');
+			    color: lightgreen;
+			}
+			input 
+			{
+			    padding: 20px;
+			    width: 500px;
+			    border-radius: 30px;
+			    font-size: 20px;
+			}
+			div 
+			{
+			    margin-top: 50px;
+			    margin-bottom: 50px;
+			}
+			
+			button
+			{
+			  	padding:15px;
+			    background-color:purple;
+			    color:white ;
+			    border: 4px;
+			    cursor:pointer;
+			    border-radius: 20px;
+			    font-size: 15px;
+			    transition-duration: 0.5s;
+			}
+			button:hover
+			{
+			    font-size: 18px;
+				background-color: white;
+				color: black;
+			}
+			img
+			{
+				width: 30px;
+				height: 30px;
+			}
+		</style>
+
+
+	<title>Text to Audio Converter</title>
+	</head>
+	<body>
+	    
+	    <h1>Text to Audio Converter</h1>
+		<div>
+			<input type="text" id="text-to-speech" placeholder="Enter text here">
+		</div>
+        <div>
+        	<button type="button" onclick="textToSpeech()">Start</button>
+        	<button type="button" onclick="cancelSpeech()">Cancel</button>
+        	<button type="button" onclick="pauseSpeech()">Pause</button>
+        	<button type="button" onclick="resumeSpeech()">Resume</button>
+
+        </div>
+        	<a href="textToVoice.html">
+        		<button type="button"><img src="reload.jpg" alt="Can't Load"></button>
+        	</a>
+        <div>
+        	<p><b style="color: red;">NOTE:</b> Enter text and click on start button.</p>
+        </div>
+		
+
+		<script>
+
+
+            function textToSpeech() 
+            {
+                var msg = document.getElementById("text-to-speech").value;
+                
+                var speech = new SpeechSynthesisUtterance();
+                speech.lang = "en-US";
+                speech.text = msg;
+                speech.volume = 1;
+                speech.rate = 0.8;
+                speech.pitch = 1;
+                speech.onend=function () 
+                {
+                	alert('Speech has finished');
+                }
+                
+                speechSynthesis.speak(speech);
+            }
+            function resumeSpeech() 
+            {
+            	speechSynthesis.resume();	
+            }
+            function pauseSpeech() 
+            {
+	            speechSynthesis.pause();
+            }
+            function cancelSpeech() 
+            {
+            	speechSynthesis.cancel();
+            }
+
+		</script>
+
+	</body>
+</html> 
